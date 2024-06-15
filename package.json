@@ -1,13 +1,13 @@
 {
-	"name": "quick-contract",
-	"displayName": "Quick Contract - Easy Header and Function Contracts Inserter",
-	"version": "0.0.2",
-	"publisher": "vscode-samples",
-	"private": true,
-	"license": "MIT",
+	"name": "header-hero",
+	"displayName": "Header Hero - Quick Headers and Function Documentation",
+	"description": "Automatically insert customizable headers and function contracts into your code, making documentation quick and effortless. Improve your code's readability and maintainability with just a click.",
+	"version": "1.0.0",
+	"publisher": "DanGlorioso",
+    "icon": "icon.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/danglorioso/header-hero"
 	},
 	"engines": {
 		"vscode": "^1.73.0"
@@ -16,7 +16,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"onCommand:extension.insertHeader",
+		"onCommand:extension.insertFunctionContract"
 	],
 	"main": "./out/extension.js",
 	"scripts": {
@@ -26,7 +27,6 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"@types/node": "^18",
 		"@types/vscode": "^1.73.0",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
