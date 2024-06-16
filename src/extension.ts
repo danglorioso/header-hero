@@ -25,12 +25,12 @@ import * as vscode from 'vscode';
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 
     // Register a command that inserts a header
-    let insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', () => {
+    const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', () => {
         insertHeaderTemplate();
     });
 
     // Register a command that inserts a function contract
-    let insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
+    const insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
         insertFunctionContractTemplate();
     });
 

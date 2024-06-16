@@ -25,11 +25,11 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 function activate({ subscriptions }) {
     // Register a command that inserts a header
-    let insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', () => {
+    const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', () => {
         insertHeaderTemplate();
     });
     // Register a command that inserts a function contract
-    let insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
+    const insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
         insertFunctionContractTemplate();
     });
     // Add to a list of disposables which are disposed when this extension is deactivated

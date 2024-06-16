@@ -4,7 +4,7 @@
 	"description": "Automatically insert customizable headers and function contracts into your code, making documentation quick and effortless. Improve your code's readability and maintainability with just a click.",
 	"version": "1.0.0",
 	"publisher": "DanGlorioso",
-    "icon": "icon.png",
+	"icon": "icon.png",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/danglorioso/header-hero"
@@ -32,5 +32,8 @@
 		"@typescript-eslint/parser": "^6.7.0",
 		"eslint": "^8.26.0",
 		"typescript": "^5.4.2"
+	},
+	"dependencies": {
+		"vscode": "^1.1.34"
 	}
 }
