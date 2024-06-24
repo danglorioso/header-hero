@@ -6,7 +6,7 @@
  *             Author: Your Name
  *            Created: 06/15/2024
  *           Modified: 06/23/2024
- * 	          Version: 1.0.0
+ *           Version: 1.0.0
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides commands
  *              to automatically insert customizable headers and function contracts

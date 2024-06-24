@@ -15,14 +15,18 @@
 	"categories": [
 		"Other"
 	],
-	"contributes": {
-		"commands": [
-			{
-				"command": "headerhero.checkfunctionlength",
-				"title": "Check Function Length of All Functions in This File"
-			}
-		]
-	},
+    "contributes": {
+        "commands": [
+            {
+                "command": "headerHero.insertHeader",
+                "title": "Insert Header Template into File or Directory"
+            },
+            {
+                "command": "headerHero.insertFunctionContract",
+                "title": "Insert Function Contract Template"
+            }
+        ]
+    },
 	"activationEvents": [
 		"onCommand:extension.insertHeader",
 		"onCommand:extension.insertFunctionContract"
@@ -35,6 +39,7 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
+		"@types/node": "^20.14.8",
 		"@types/vscode": "^1.73.0",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
