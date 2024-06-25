@@ -69,10 +69,10 @@ function insertHeaderIntoFile(filePath: string) {
     const headerTemplate = `\
 /**************************************************************
  *
- *                     ${path.basename(filePath)}
+ *                ${path.basename(filePath)}
  *
  *     Assignment: 
- *        Authors: 
+ *         Author: 
  *           Date: ${new Date().toLocaleDateString()}
  *
  *     Summary: 
@@ -113,14 +113,16 @@ function insertFunctionContractTemplate() {
         const functionContractTemplate = `\
 /****************** function_name *******************
  * 
- * 
+ * Description: 
  *
  * Parameters:
  *        type param:  description
  *        type param:  description
  *        type param:  description
+ * 
  * Returns:
  *        type:  description
+ * 
  * Expects:
  *      description of preconditions   
  * 
