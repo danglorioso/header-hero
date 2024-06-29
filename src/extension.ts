@@ -3,19 +3,19 @@
  *                     extension.ts
  *
  *            Project: Header Hero VSCode Extension
- *             Author: Your Name
+ *             Author: Dan Glorioso
  *            Created: 06/15/2024
- *           Modified: 06/23/2024
- *           Version: 1.0.0
+ *           Modified: 06/25/2024
+ *            Version: 1.0.0
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides commands
  *              to automatically insert customizable headers and function contracts
  *              into the active text editor, making documentation quick and easy.
  * 
- *  Acknowledgements: This extension is inspired by the "statusbar-sample" example
+ *  Acknowledgements: This extension is inspired by the "completion-sample" example
  *                    provided by Microsoft's Visual Studio Code documentation:
  *                    https://github.com/microsoft/vscode-extension-samples/tree/
- *                    209ce0e81bdf23adb84e4a913f1082fa116e26f9/statusbar-sample.
+ *                    209ce0e81bdf23adb84e4a913f1082fa116e26f9/completions-sample.
  *
  **************************************************************/
 
@@ -24,7 +24,10 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
+
 export function activate({ subscriptions }: vscode.ExtensionContext) {
+
+    console.log('Header Hero extension is now active.');
 
     // Register a command that inserts a header
     const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
@@ -137,4 +140,82 @@ function insertFunctionContractTemplate() {
     }
 }
 
-export function deactivate() {}
+// // export function deactivate() {}
+
+
+
+
+
+// export function activate({ subscriptions }: vscode.ExtensionContext) {
+//     // Register commands
+//     const insertHeaderCommand = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
+//         await insertHeaderTemplate();
+//     });
+
+//     subscriptions.push(insertHeaderCommand);
+// }
+
+// async function insertHeaderTemplate() {
+//     const editor = vscode.window.activeTextEditor;
+//     if (!editor) {
+//         vscode.window.showErrorMessage('No active editor found.');
+//         return;
+//     }
+
+//     const options = ['Just this file', 'All files in directory'];
+//     const choice = await vscode.window.showQuickPick(options, {
+//         placeHolder: 'Insert header into just this file or every file in the directory?'
+//     });
+
+//     if (!choice) {
+//         return; // User cancelled
+//     }
+
+//     if (choice === 'Just this file') {
+//         insertHeaderIntoFile(editor.document.uri.fsPath);
+//     } else if (choice === 'All files in directory') {
+//         const directoryPath = path.dirname(editor.document.uri.fsPath);
+//         insertHeaderIntoDirectory(directoryPath);
+//     }
+// }
+
+// function insertHeaderIntoFile(filePath: string) {
+//     const headerTemplate = `\
+// /**************************************************************
+//  *
+//  *                ${path.basename(filePath)}
+//  *
+//  *     Assignment: 
+//  *         Author: 
+//  *           Date: ${new Date().toLocaleDateString()}
+//  *
+//  *     Summary: 
+//  * 
+//  **************************************************************/
+// `;
+
+//     vscode.workspace.openTextDocument(filePath).then((document) => {
+//         vscode.window.showTextDocument(document).then((editor) => {
+//             const position = new vscode.Position(0, 0);
+//             editor.edit(editBuilder => {
+//                 editBuilder.insert(position, headerTemplate);
+//             });
+//         });
+//     });
+// }
+
+// function insertHeaderIntoDirectory(directoryPath: string) {
+//     fs.readdir(directoryPath, (err, files) => {
+//         if (err) {
+//             vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
+//             return;
+//         }
+
+//         files.forEach(file => {
+//             const filePath = path.join(directoryPath, file);
+//             if (fs.lstatSync(filePath).isFile()) {
+//                 insertHeaderIntoFile(filePath);
+//             }
+//         });
+//     });
+// }

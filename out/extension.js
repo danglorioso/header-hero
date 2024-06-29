@@ -4,29 +4,32 @@
  *                     extension.ts
  *
  *            Project: Header Hero VSCode Extension
- *             Author: Your Name
+ *             Author: Dan Glorioso
  *            Created: 06/15/2024
- *           Modified: 06/15/2024
- * 	          Version: 1.0.0
+ *           Modified: 06/25/2024
+ *            Version: 1.0.0
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides commands
  *              to automatically insert customizable headers and function contracts
  *              into the active text editor, making documentation quick and easy.
  *
- *  Acknowledgements: This extension is inspired by the "statusbar-sample" example
+ *  Acknowledgements: This extension is inspired by the "completion-sample" example
  *                    provided by Microsoft's Visual Studio Code documentation:
  *                    https://github.com/microsoft/vscode-extension-samples/tree/
- *                    209ce0e81bdf23adb84e4a913f1082fa116e26f9/statusbar-sample.
+ *                    209ce0e81bdf23adb84e4a913f1082fa116e26f9/completions-sample.
  *
  **************************************************************/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deactivate = exports.activate = void 0;
+exports.activate = void 0;
 // The module 'vscode' contains the VS Code extensibility API
 const vscode = require("vscode");
+const fs = require("fs");
+const path = require("path");
 function activate({ subscriptions }) {
+    console.log('Header Hero extension is now active.');
     // Register a command that inserts a header
-    const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', () => {
-        insertHeaderTemplate();
+    const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
+        await insertHeaderTemplate();
     });
     // Register a command that inserts a function contract
     const insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
@@ -37,27 +40,63 @@ function activate({ subscriptions }) {
     subscriptions.push(insertFunctionContract);
 }
 exports.activate = activate;
-function insertHeaderTemplate() {
+async function insertHeaderTemplate() {
     const editor = vscode.window.activeTextEditor;
-    if (editor) {
-        const position = new vscode.Position(0, 0);
-        const headerTemplate = `\
+    if (!editor) {
+        vscode.window.showErrorMessage('No active editor found.');
+        return;
+    }
+    const options = ['Just this file', 'All files in directory'];
+    const choice = await vscode.window.showQuickPick(options, {
+        placeHolder: 'Do you want to insert the header into just this file or every file in the directory?'
+    });
+    if (!choice) {
+        return; // User cancelled the selection
+    }
+    if (choice === 'Just this file') {
+        insertHeaderIntoFile(editor.document.uri.fsPath);
+    }
+    else if (choice === 'All files in directory') {
+        const directoryPath = path.dirname(editor.document.uri.fsPath);
+        insertHeaderIntoDirectory(directoryPath);
+    }
+}
+function insertHeaderIntoFile(filePath) {
+    const headerTemplate = `\
 /**************************************************************
  *
- *                     ${editor.document.fileName}
+ *                ${path.basename(filePath)}
  *
  *     Assignment: 
- *        Authors: 
+ *         Author: 
  *           Date: ${new Date().toLocaleDateString()}
  *
  *     Summary: 
  * 
  **************************************************************/
 `;
-        editor.edit(editBuilder => {
-            editBuilder.insert(position, headerTemplate);
+    vscode.workspace.openTextDocument(filePath).then((document) => {
+        vscode.window.showTextDocument(document).then((editor) => {
+            const position = new vscode.Position(0, 0);
+            editor.edit(editBuilder => {
+                editBuilder.insert(position, headerTemplate);
+            });
         });
-    }
+    });
+}
+function insertHeaderIntoDirectory(directoryPath) {
+    fs.readdir(directoryPath, (err, files) => {
+        if (err) {
+            vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
+            return;
+        }
+        files.forEach(file => {
+            const filePath = path.join(directoryPath, file);
+            if (fs.lstatSync(filePath).isFile()) {
+                insertHeaderIntoFile(filePath);
+            }
+        });
+    });
 }
 function insertFunctionContractTemplate() {
     const editor = vscode.window.activeTextEditor;
@@ -66,14 +105,16 @@ function insertFunctionContractTemplate() {
         const functionContractTemplate = `\
 /****************** function_name *******************
  * 
- * 
+ * Description: 
  *
  * Parameters:
  *        type param:  description
  *        type param:  description
  *        type param:  description
+ * 
  * Returns:
  *        type:  description
+ * 
  * Expects:
  *      description of preconditions   
  * 
@@ -87,6 +128,69 @@ function insertFunctionContractTemplate() {
         });
     }
 }
-function deactivate() { }
-exports.deactivate = deactivate;
+// // export function deactivate() {}
+// export function activate({ subscriptions }: vscode.ExtensionContext) {
+//     // Register commands
+//     const insertHeaderCommand = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
+//         await insertHeaderTemplate();
+//     });
+//     subscriptions.push(insertHeaderCommand);
+// }
+// async function insertHeaderTemplate() {
+//     const editor = vscode.window.activeTextEditor;
+//     if (!editor) {
+//         vscode.window.showErrorMessage('No active editor found.');
+//         return;
+//     }
+//     const options = ['Just this file', 'All files in directory'];
+//     const choice = await vscode.window.showQuickPick(options, {
+//         placeHolder: 'Insert header into just this file or every file in the directory?'
+//     });
+//     if (!choice) {
+//         return; // User cancelled
+//     }
+//     if (choice === 'Just this file') {
+//         insertHeaderIntoFile(editor.document.uri.fsPath);
+//     } else if (choice === 'All files in directory') {
+//         const directoryPath = path.dirname(editor.document.uri.fsPath);
+//         insertHeaderIntoDirectory(directoryPath);
+//     }
+// }
+// function insertHeaderIntoFile(filePath: string) {
+//     const headerTemplate = `\
+// /**************************************************************
+//  *
+//  *                ${path.basename(filePath)}
+//  *
+//  *     Assignment: 
+//  *         Author: 
+//  *           Date: ${new Date().toLocaleDateString()}
+//  *
+//  *     Summary: 
+//  * 
+//  **************************************************************/
+// `;
+//     vscode.workspace.openTextDocument(filePath).then((document) => {
+//         vscode.window.showTextDocument(document).then((editor) => {
+//             const position = new vscode.Position(0, 0);
+//             editor.edit(editBuilder => {
+//                 editBuilder.insert(position, headerTemplate);
+//             });
+//         });
+//     });
+// }
+// function insertHeaderIntoDirectory(directoryPath: string) {
+//     fs.readdir(directoryPath, (err, files) => {
+//         if (err) {
+//             vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
+//             return;
+//         }
+//         files.forEach(file => {
+//             const filePath = path.join(directoryPath, file);
+//             if (fs.lstatSync(filePath).isFile()) {
+//                 insertHeaderIntoFile(filePath);
+//             }
+//         });
+//     });
+// }
 //# sourceMappingURL=extension.js.map
