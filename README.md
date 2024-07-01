@@ -8,7 +8,7 @@
 The **header-hero** extension provides a number of different features to improve 
 your code's readability and maintainability with just a click.
 
-
+- Will not add header templates to system files (like .DS_Store or .gitattributes)
 
 ## Requirements
 

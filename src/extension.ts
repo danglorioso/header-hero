@@ -29,13 +29,17 @@ import * as path from 'path';
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 
+    console.log('Header Hero extension is now active!');
+
     // Register a command that inserts a header
     const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
+        console.log('Insert header command called.');
         await insertHeaderTemplate();
     });
 
     // Register a command that inserts a function contract
     const insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
+        console.log('Insert function contract command called.');
         insertFunctionContractTemplate();
     });
 
@@ -47,7 +51,8 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 async function insertHeaderTemplate() {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
-        vscode.window.showErrorMessage('No active editor found.');
+        console.log('No active editor found.');
+        vscode.window.showErrorMessage('No active editor found, cannot insert header.');
         return;
     }
 
@@ -61,8 +66,10 @@ async function insertHeaderTemplate() {
     }
 
     if (choice === 'Just this file') {
+        console.log('Inserting header into single file.');
         insertHeaderIntoFile(editor.document.uri.fsPath);
     } else if (choice === 'All files in directory') {
+        console.log('Inserting header into all files in directory.');
         const directoryPath = path.dirname(editor.document.uri.fsPath);
         insertHeaderIntoDirectory(directoryPath);
     }
@@ -93,19 +100,45 @@ function insertHeaderIntoFile(filePath: string) {
     });
 }
 
-function insertHeaderIntoDirectory(directoryPath: string) {
-    fs.readdir(directoryPath, (err, files) => {
+async function insertHeaderIntoDirectory(directoryPath: string) {
+    fs.readdir(directoryPath, async (err, files) => {
         if (err) {
             vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
             return;
         }
 
-        files.forEach(file => {
-            const filePath = path.join(directoryPath, file);
-            if (fs.lstatSync(filePath).isFile()) {
-                insertHeaderIntoFile(filePath);
+        for (const file of files) {
+            if (file.startsWith('.')) {
+                continue; // Skip files that begin with a dot
             }
-        });
+            const filePath = path.join(directoryPath, file);
+            if (fs.lstatSync(filePath).isFile() && !isBinaryFile(filePath)) {
+                await insertHeaderIntoFileAsync(filePath);
+            }
+        }
+    });
+}
+
+async function insertHeaderIntoFileAsync(filePath: string) {
+    const headerTemplate = `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *     Assignment: 
+ *         Author: 
+ *           Date: ${new Date().toLocaleDateString()}
+ *
+ *     Summary: 
+ * 
+ **************************************************************/
+`;
+
+    const document = await vscode.workspace.openTextDocument(filePath);
+    const editor = await vscode.window.showTextDocument(document, { preview: false });
+    const position = new vscode.Position(0, 0);
+    await editor.edit(editBuilder => {
+        editBuilder.insert(position, headerTemplate);
     });
 }
 
@@ -138,4 +171,9 @@ function insertFunctionContractTemplate() {
             editBuilder.insert(position, functionContractTemplate);
         });
     }
+}
+
+function isBinaryFile(filePath: string): boolean {
+    const binaryExtensions = ['.DS_Store', '.exe', '.bin', '.dll', '.so', '.dylib', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.bmp'];
+    return binaryExtensions.some(extension => filePath.endsWith(extension));
 }
