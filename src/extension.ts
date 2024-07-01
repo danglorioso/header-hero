@@ -50,14 +50,13 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
 async function insertHeaderTemplate() {
     const editor = vscode.window.activeTextEditor;
+
     if (!editor) {
-        console.log('No active editor found.');
-        vscode.window.showErrorMessage('No active editor found, cannot insert header.');
+        await handleNoActiveEditor();
         return;
     }
 
-    const options = ['Just this file', 'All files in directory'];
-    const choice = await vscode.window.showQuickPick(options, {
+    const choice = await vscode.window.showQuickPick(['Just this file', 'All files in directory'], {
         placeHolder: 'Do you want to insert the header into just this file or every file in the directory?'
     });
 
@@ -72,6 +71,24 @@ async function insertHeaderTemplate() {
         console.log('Inserting header into all files in directory.');
         const directoryPath = path.dirname(editor.document.uri.fsPath);
         insertHeaderIntoDirectory(directoryPath);
+    }
+}
+
+async function handleNoActiveEditor() {
+    console.log('No active editor found.');
+    const choice = await vscode.window.showQuickPick(['Yes', 'No'], {
+        placeHolder: 'No active editor found. Do you want to insert headers into all files in the directory?'
+    });
+
+    if (!choice || choice === 'No') {
+        return; // User cancelled the selection or chose No
+    }
+
+    const directoryPath = vscode.workspace.rootPath;
+    if (directoryPath) {
+        insertHeaderIntoDirectory(directoryPath);
+    } else {
+        vscode.window.showErrorMessage('No workspace directory found.');
     }
 }
 
