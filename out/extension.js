@@ -23,10 +23,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 // The module 'vscode' contains the VS Code extensibility API
 const vscode = require("vscode");
+// The module 'fs' provides an API for interacting with the file system
+// and are built-in Node.js modules
 const fs = require("fs");
 const path = require("path");
 function activate({ subscriptions }) {
-    console.log('Header Hero extension is now active.');
     // Register a command that inserts a header
     const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
         await insertHeaderTemplate();
@@ -116,10 +117,10 @@ function insertFunctionContractTemplate() {
  *        type:  description
  * 
  * Expects:
- *      description of preconditions   
+ *         
  * 
  * Notes: 
- *      Additional notes
+ *      
  *
  ********************************************/
 `;
@@ -128,69 +129,4 @@ function insertFunctionContractTemplate() {
         });
     }
 }
-// // export function deactivate() {}
-// export function activate({ subscriptions }: vscode.ExtensionContext) {
-//     // Register commands
-//     const insertHeaderCommand = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
-//         await insertHeaderTemplate();
-//     });
-//     subscriptions.push(insertHeaderCommand);
-// }
-// async function insertHeaderTemplate() {
-//     const editor = vscode.window.activeTextEditor;
-//     if (!editor) {
-//         vscode.window.showErrorMessage('No active editor found.');
-//         return;
-//     }
-//     const options = ['Just this file', 'All files in directory'];
-//     const choice = await vscode.window.showQuickPick(options, {
-//         placeHolder: 'Insert header into just this file or every file in the directory?'
-//     });
-//     if (!choice) {
-//         return; // User cancelled
-//     }
-//     if (choice === 'Just this file') {
-//         insertHeaderIntoFile(editor.document.uri.fsPath);
-//     } else if (choice === 'All files in directory') {
-//         const directoryPath = path.dirname(editor.document.uri.fsPath);
-//         insertHeaderIntoDirectory(directoryPath);
-//     }
-// }
-// function insertHeaderIntoFile(filePath: string) {
-//     const headerTemplate = `\
-// /**************************************************************
-//  *
-//  *                ${path.basename(filePath)}
-//  *
-//  *     Assignment: 
-//  *         Author: 
-//  *           Date: ${new Date().toLocaleDateString()}
-//  *
-//  *     Summary: 
-//  * 
-//  **************************************************************/
-// `;
-//     vscode.workspace.openTextDocument(filePath).then((document) => {
-//         vscode.window.showTextDocument(document).then((editor) => {
-//             const position = new vscode.Position(0, 0);
-//             editor.edit(editBuilder => {
-//                 editBuilder.insert(position, headerTemplate);
-//             });
-//         });
-//     });
-// }
-// function insertHeaderIntoDirectory(directoryPath: string) {
-//     fs.readdir(directoryPath, (err, files) => {
-//         if (err) {
-//             vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
-//             return;
-//         }
-//         files.forEach(file => {
-//             const filePath = path.join(directoryPath, file);
-//             if (fs.lstatSync(filePath).isFile()) {
-//                 insertHeaderIntoFile(filePath);
-//             }
-//         });
-//     });
-// }
 //# sourceMappingURL=extension.js.map
