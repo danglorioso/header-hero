@@ -130,10 +130,20 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
         }
         const fullPath = path.join(directoryPath, file);
         if (fs.lstatSync(fullPath).isFile() && !isBinaryFile(fullPath)) {
+            const document = await vscode.workspace.openTextDocument(fullPath);
+            const firstLine = document.lineAt(0).text;
+
+            // Skip files that already have a header starting with /*
+            if (/^\/\*{2,}/.test(firstLine.trim())) {
+                console.log(`Skipping file with existing header: ${fullPath}`);
+                continue;
+            }
+            
             await insertHeaderIntoFile(fullPath); // Apply header to each file
         }
     }
 }
+
 
 async function insertHeaderIntoFile(filePath: string) {
     const headerTemplate = `\
@@ -152,20 +162,13 @@ async function insertHeaderIntoFile(filePath: string) {
 
     // Open the document and insert the header template
     const document = await vscode.workspace.openTextDocument(filePath);
-    const firstLine = document.lineAt(0).text;
-
-    // Skip files that already have a header starting with /*
-    if (/^\/\*{2,}/.test(firstLine.trim())) {
-        console.log(`Skipping file with existing header: ${filePath}`);
-        return;
-    }
-
     const editor = await vscode.window.showTextDocument(document);
     const position = new vscode.Position(0, 0);
     await editor.edit(editBuilder => {
         editBuilder.insert(position, headerTemplate);
     });
 }
+
 
 // function insertHeaderIntoFile(filePath: string) {
 //     const headerTemplate = `\
