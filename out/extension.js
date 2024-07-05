@@ -104,19 +104,11 @@ async function insertHeaderIntoDirectory(directoryPath) {
     }
 }
 async function insertHeaderIntoFile(filePath) {
-    const headerTemplate = `\
-/**************************************************************
- *
- *                ${path.basename(filePath)}
- *
- *     Assignment: 
- *         Author: 
- *           Date: ${new Date().toLocaleDateString()}
- *
- *     Summary: 
- * 
- **************************************************************/
-`;
+    const config = vscode.workspace.getConfiguration('headerHero');
+    let headerTemplate = config.get('headerTemplate', '');
+    // Replace placeholders with actual values
+    headerTemplate = headerTemplate.replace('{filename}', path.basename(filePath));
+    headerTemplate = headerTemplate.replace('{date}', new Date().toLocaleDateString());
     // Open the document and insert the header template
     const document = await vscode.workspace.openTextDocument(filePath);
     const editor = await vscode.window.showTextDocument(document);
@@ -126,7 +118,11 @@ async function insertHeaderIntoFile(filePath) {
     });
 }
 function isBinaryFile(filePath) {
-    const binaryExtensions = ['.DS_Store', '.exe', '.bin', '.dll', '.so', '.dylib', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.bmp', ".gitattributes", ".gitignore", ".gitmodules", ".gitkeep", ".git", ".gitconfig"];
+    const binaryExtensions = [
+        '.DS_Store', '.exe', '.bin', '.dll', '.so', '.dylib', '.pdf',
+        '.png', '.jpg', '.jpeg', '.gif', '.bmp', ".gitattributes",
+        ".gitignore", ".gitmodules", ".gitkeep", ".git", ".gitconfig"
+    ];
     return binaryExtensions.some(extension => filePath.endsWith(extension));
 }
 //# sourceMappingURL=extension.js.map
