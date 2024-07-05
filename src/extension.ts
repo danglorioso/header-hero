@@ -37,15 +37,8 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
         await insertHeaderTemplate();
     });
 
-    // Register a command that inserts a function contract
-    const insertFunctionContract = vscode.commands.registerCommand('headerHero.insertFunctionContract', () => {
-        console.log('Insert function contract command called.');
-        insertFunctionContractTemplate();
-    });
-
     // Add to a list of disposables which are disposed when this extension is deactivated
     subscriptions.push(insertHeader);
-    subscriptions.push(insertFunctionContract);
 }
 
 // Command to insert a header template into the active text editor
@@ -92,8 +85,6 @@ async function handleNoActiveEditor() {
     }
 
     // User selected Yes, so insert headers into all files in the directory
-
-    /* TODO: MODIFY BELOW TO CALL THE INSERTHEADERINTODIRECTORY FUNCTION */
     const directoryPath = vscode.workspace.rootPath;
     if (directoryPath) {
         insertHeaderIntoDirectory(directoryPath);
@@ -101,26 +92,6 @@ async function handleNoActiveEditor() {
         vscode.window.showErrorMessage('No workspace directory found.');
     }
 }
-
-// async function insertHeaderIntoDirectory(directoryPath: string) {
-//     fs.readdir(directoryPath, async (err, files) => {
-//         if (err) {
-//             vscode.window.showErrorMessage('Failed to read directory: ' + err.message);
-//             return;
-//         }
-
-//         for (const file of files) {
-//             if (file.startsWith('.')) {
-//                 continue; // Skip files that begin with a dot
-//             }
-//             const filePath = path.join(directoryPath, file);
-//             if (fs.lstatSync(filePath).isFile() && !isBinaryFile(filePath)) {
-//                 // await insertHeaderIntoFileAsync(filePath);
-//                 await insertHeaderIntoFile(filePath);
-//             }
-//         }
-//     });
-// }
 
 async function insertHeaderIntoDirectory(directoryPath: string) {
     const files = fs.readdirSync(directoryPath);
@@ -144,7 +115,6 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
     }
 }
 
-
 async function insertHeaderIntoFile(filePath: string) {
     const headerTemplate = `\
 /**************************************************************
@@ -167,86 +137,6 @@ async function insertHeaderIntoFile(filePath: string) {
     await editor.edit(editBuilder => {
         editBuilder.insert(position, headerTemplate);
     });
-}
-
-
-// function insertHeaderIntoFile(filePath: string) {
-//     const headerTemplate = `\
-// /**************************************************************
-//  *
-//  *                ${path.basename(filePath)}
-//  *
-//  *     Assignment: 
-//  *         Author: 
-//  *           Date: ${new Date().toLocaleDateString()}
-//  *
-//  *     Summary: 
-//  * 
-//  **************************************************************/
-// `;
-
-//     vscode.workspace.openTextDocument(filePath).then((document) => {
-//         vscode.window.showTextDocument(document).then((editor) => {
-//             const position = new vscode.Position(0, 0);
-//             editor.edit(editBuilder => {
-//                 editBuilder.insert(position, headerTemplate);
-//             });
-//         });
-//     });
-// }
-
-// async function insertHeaderIntoFileAsync(filePath: string) {
-//     const headerTemplate = `\
-// /**************************************************************
-//  *
-//  *                ${path.basename(filePath)}
-//  *
-//  *     Assignment: 
-//  *         Author: 
-//  *           Date: ${new Date().toLocaleDateString()}
-//  *
-//  *     Summary: 
-//  * 
-//  **************************************************************/
-// `;
-
-//     const document = await vscode.workspace.openTextDocument(filePath);
-//     const editor = await vscode.window.showTextDocument(document, { preview: false });
-//     const position = new vscode.Position(0, 0);
-//     await editor.edit(editBuilder => {
-//         editBuilder.insert(position, headerTemplate);
-//     });
-// }
-
-function insertFunctionContractTemplate() {
-    const editor = vscode.window.activeTextEditor;
-    if (editor) {
-        const position = editor.selection.active;
-        const functionContractTemplate = `\
-/****************** function_name *******************
- * 
- * Description: 
- *
- * Parameters:
- *        type param:  description
- *        type param:  description
- *        type param:  description
- * 
- * Returns:
- *        type:  description
- * 
- * Expects:
- *         
- * 
- * Notes: 
- *      
- *
- ********************************************/
-`;
-        editor.edit(editBuilder => {
-            editBuilder.insert(position, functionContractTemplate);
-        });
-    }
 }
 
 function isBinaryFile(filePath: string): boolean {
