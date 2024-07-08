@@ -32,8 +32,19 @@
             "properties": {
                 "headerHero.headerTemplate": {
                     "type": "string",
-                    "default": "/**************************************************************\n *\n *                {filename}\n *\n *     Assignment: \n *         Author: \n *           Date: {date}\n *\n *     Summary: \n *\n **************************************************************\n",
-                    "description": "The default template used for the header. Use {filename} and {date} for smart-inserts."
+                    "default": "standard",
+                    "enum": ["standard", "detailed", "minimal"],
+                    "enumDescriptions": [
+                        "Standard header template with basic details.",
+                        "Detailed header template with additional fields.",
+                        "Minimal header template with essential information only."
+                    ],
+                    "enumItemLabels": [
+                        "Standard",
+                        "Detailed",
+                        "Minimal"
+                    ],
+                    "description": "Select the header template to be used."
                 }
             }
         }

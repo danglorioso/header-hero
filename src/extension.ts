@@ -118,20 +118,58 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
 
 // Function for inserting a header into a single file
 async function insertHeaderIntoFile(filePath: string) {
-    const config = vscode.workspace.getConfiguration('headerHero');
-    let headerTemplate = config.get<string>('headerTemplate', '');
+    const headerTemplateType = vscode.workspace.getConfiguration('headerHero').get<string>('headerTemplate');
+    const headerTemplate = getHeaderTemplate(filePath, headerTemplateType);
 
-    // Replace placeholders with actual values
-    headerTemplate = headerTemplate.replace('{filename}', path.basename(filePath));
-    headerTemplate = headerTemplate.replace('{date}', new Date().toLocaleDateString());
-
-    // Open the document and insert the header template
     const document = await vscode.workspace.openTextDocument(filePath);
     const editor = await vscode.window.showTextDocument(document);
     const position = new vscode.Position(0, 0);
     await editor.edit(editBuilder => {
         editBuilder.insert(position, headerTemplate);
     });
+}
+
+function getHeaderTemplate(filePath: string, templateType: string | undefined): string {
+    const templates: { [key: string]: string } = {
+        standard: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *     Assignment: 
+ *         Author: 
+ *           Date: ${new Date().toLocaleDateString()}
+ *
+ *     Summary: 
+ * 
+ **************************************************************/
+`,
+        detailed: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *     Assignment: 
+ *         Author: 
+ *           Date: ${new Date().toLocaleDateString()}
+ *      Last Updated: ${new Date().toLocaleDateString()}
+ *           Version: 1.0.0
+ *
+ *     Summary: 
+ * 
+ **************************************************************/
+`,
+        minimal: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *           Date: ${new Date().toLocaleDateString()}
+ * 
+ **************************************************************/
+`
+    };
+
+    return templates[templateType || 'standard'];
 }
 
 function isBinaryFile(filePath: string): boolean {
