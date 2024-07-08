@@ -29,22 +29,29 @@
         "configuration": {
             "type": "object",
             "title": "Header Hero Configuration",
-            "properties": {
+			"properties": {
                 "headerHero.headerTemplate": {
                     "type": "string",
                     "default": "standard",
-                    "enum": ["standard", "detailed", "minimal"],
+                    "enum": ["standard", "detailed", "minimal", "custom"],
                     "enumDescriptions": [
                         "Standard header template with basic details.",
                         "Detailed header template with additional fields.",
-                        "Minimal header template with essential information only."
+                        "Minimal header template with essential information only.",
+                        "Custom header template defined by the user."
                     ],
                     "enumItemLabels": [
                         "Standard",
                         "Detailed",
-                        "Minimal"
+                        "Minimal",
+                        "Custom"
                     ],
                     "description": "Select the header template to be used."
+                },
+                "headerHero.customTemplate": {
+                    "type": "string",
+                    "default": "/**************************************************************\n *\n *                ${fileName}\n *\n *     Assignment: \n *         Author: \n *           Date: ${date}\n *\n *     Summary: \n *\n **************************************************************/\n",
+                    "description": "Define your custom header template. Use ${fileName} for the file name and ${date} for the current date."
                 }
             }
         }

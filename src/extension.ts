@@ -118,8 +118,15 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
 
 // Function for inserting a header into a single file
 async function insertHeaderIntoFile(filePath: string) {
-    const headerTemplateType = vscode.workspace.getConfiguration('headerHero').get<string>('headerTemplate');
-    const headerTemplate = getHeaderTemplate(filePath, headerTemplateType);
+    const config = vscode.workspace.getConfiguration('headerHero');
+    const headerTemplateType = config.get<string>('headerTemplate');
+    let headerTemplate = '';
+
+    if (headerTemplateType === 'custom') {
+        headerTemplate = config.get<string>('customTemplate', '');
+    } else {
+        headerTemplate = getHeaderTemplate(filePath, headerTemplateType);
+    }
 
     const document = await vscode.workspace.openTextDocument(filePath);
     const editor = await vscode.window.showTextDocument(document);
