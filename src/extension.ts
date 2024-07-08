@@ -41,7 +41,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
     subscriptions.push(insertHeader);
 }
 
-// Command to insert a header template into the active text editor
+// Command to for handling the queries for inserting a header
 async function insertHeaderTemplate() {
     // Initalize the active text editor
     const editor = vscode.window.activeTextEditor;
@@ -93,6 +93,7 @@ async function handleNoActiveEditor() {
     }
 }
 
+// Function to call insertHeaderIntoFile for each file in a directory
 async function insertHeaderIntoDirectory(directoryPath: string) {
     const files = fs.readdirSync(directoryPath);
     for (const file of files) {
@@ -115,6 +116,7 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
     }
 }
 
+// Function for inserting a header into a single file
 async function insertHeaderIntoFile(filePath: string) {
     const config = vscode.workspace.getConfiguration('headerHero');
     let headerTemplate = config.get<string>('headerTemplate', '');
