@@ -16,7 +16,45 @@ Requires VSCode version 1.73.0 or greater.
 
 ## Extension Settings
 
-This extension currently does not add any VS Code Settings. 
+Header Hero provides the following settings to customize the header templates:
+
+<ins>Header Hero: Header Template (headerHero.headerTemplate)</ins>
+Select the header template to be added to for your files. You can choose from a
+variety of predefined templates or define your own custom template.
+
+~~~~
+- Standard
+* Standard header template with basic details.
+- Academic Project
+* Academic project header template with course and project details.
+- Personal Project
+* Personal project header template with project information.
+- Professional Code
+* Professional code header template with detailed project information.
+- Open Source Contribution
+* Open source contribution header template with repository information.
+- Minimal
+* Minimal header template with essential information only.
+- Detailed Change Log
+* Detailed change log header template with version and change log.
+- Machine Learning Project
+* Machine learning project header template with dataset and algorithm details.
+- Script File
+* Script file header template with usage instructions.
+- Test File
+* Test file header template with test cases.
+- Web Development Project
+* Web development project header template with technologies used.
+- Custom
+* Custom header template defined by the user.
+~~~~
+
+<ins>Header Hero: Custom Template (headerHero.customTemplate)</ins>
+Define your custom header template. Use ${fileName} for the file name and 
+${date} for the current date.
+
+
+With these settings, you can easily select or create the header template that best fits your needs.
 
 ## Known Issues
 
