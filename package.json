@@ -31,6 +31,7 @@
                     "default": "standard",
                     "enum": [
                         "standard",
+						"assignment",
                         "academic",
                         "personal",
                         "pro",
@@ -45,6 +46,7 @@
                     ],
                     "enumDescriptions": [
                         "Standard header template with basic details.",
+						"Assignment header template with assignment information.",
                         "Academic project header template with course and project details.",
                         "Personal project header template with project information.",
                         "Professional code header template with detailed project information.",
@@ -59,6 +61,7 @@
                     ],
                     "enumItemLabels": [
                         "Standard",
+						"Assignment",
                         "Academic Project",
                         "Personal Project",
                         "Professional Code",

@@ -143,6 +143,18 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *
  *                ${path.basename(filePath)}
  *
+ *         Author: 
+ *           Date: ${new Date().toLocaleDateString()}
+ *
+ *     Summary: 
+ * 
+ **************************************************************/
+`,        
+        assignment: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
  *     Assignment: 
  *         Author: 
  *           Date: ${new Date().toLocaleDateString()}
