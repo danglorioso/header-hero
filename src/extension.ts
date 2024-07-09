@@ -151,26 +151,167 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  * 
  **************************************************************/
 `,
-        detailed: `\
+        academic: `\
 /**************************************************************
  *
  *                ${path.basename(filePath)}
  *
- *     Assignment: 
- *         Author: 
- *           Date: ${new Date().toLocaleDateString()}
- *      Last Updated: ${new Date().toLocaleDateString()}
- *           Version: 1.0.0
+ *       Course: [Course Name]
+ *   Instructor: [Instructor Name]
+ *         Date: ${new Date().toLocaleDateString()}
+ *       Author: [Your Name]
  *
- *     Summary: 
+ *     Project: [Project Title]
+ *    Filename: ${path.basename(filePath)}
+ * Description: 
+ *    [A brief description of the file's purpose and contents]
+ *
+ **************************************************************/
+`,
+        personal: `\
+#******************************************************************
+#
+#                        ${path.basename(filePath)}
+#
+#       Project: [Project Name]
+#       Created: ${new Date().toLocaleDateString()}
+#        Author: [Your Name]
+#
+#   Description:
+#   [A brief description of the file's purpose and contents]
+#
+#******************************************************************
+`,
+        pro: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *   Project Name: [Project Name]
+ *         Module: [Module Name]
+ *         Author: [Your Name]
+ *           Date: ${new Date().toLocaleDateString()}
+ *    Last Update: [Last Update Date]
+ *        Version: 1.0.0
+ *
+ *   Summary:
+ *   [A brief description of the file's purpose and contents]
  * 
  **************************************************************/
+`,
+        openSource: `\
+###############################################################
+#
+#                ${path.basename(filePath)}
+#
+#   Open Source Project: [Project Name]
+#        Repository URL: [Repository URL]
+#           Contributor: [Your Name]
+#                  Date: ${new Date().toLocaleDateString()}
+#
+#   Description: 
+#   [A brief description of the file's purpose and contents]
+#
+###############################################################
 `,
         minimal: `\
 /**************************************************************
  *
  *                ${path.basename(filePath)}
+ *         Author: [Your Name]
  *           Date: ${new Date().toLocaleDateString()}
+ *
+ **************************************************************/
+`,
+        detailed: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *   Project Name: [Project Name]
+ *         Module: [Module Name]
+ *         Author: [Your Name]
+ *           Date: ${new Date().toLocaleDateString()}
+ *        Version: 1.0.0
+ *
+ *   Description: 
+ *   [A brief description of the file's purpose and contents]
+ * 
+ *   Change Log:
+ *   - [Date]: [Description of changes]
+ *   - [Date]: [Description of changes]
+ *
+ **************************************************************/
+`,
+        ml: `\
+###############################################################
+#
+#                ${path.basename(filePath)}
+#
+#      ML Project: [Project Name]
+#          Author: [Your Name]
+#            Date: ${new Date().toLocaleDateString()}
+#    Dataset Used: [Dataset Name]
+#       Algorithm: [Algorithm Name]
+#
+#   Description:
+#   [A brief description of the file's purpose and contents]
+#
+###############################################################
+`,
+        script: `\
+###############################################################
+#
+#                ${path.basename(filePath)}
+#
+#      Script Name: ${path.basename(filePath)}
+#           Author: [Your Name]
+#             Date: ${new Date().toLocaleDateString()}
+
+#    Description: 
+#    [A brief description of what the script does]
+#
+#    Usage: 
+#    [How to run the script]
+#
+###############################################################
+`,
+        test: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *    Test Suite: [Test Suite Name]
+ *        Module: [Module Name]
+ *        Author: [Your Name]
+ *          Date: ${new Date().toLocaleDateString()}
+ *
+ *   Description:
+ *   [A brief description of the tests in this file]
+ * 
+ *   Test Cases:
+ *   - [Test Case 1]
+ *   - [Test Case 2]
+ *
+ **************************************************************/
+`,
+        webDev: `\
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *   Project Name: [Project Name]
+ *         Module: [Module Name]
+ *         Author: [Your Name]
+ *           Date: ${new Date().toLocaleDateString()}
+ *    Last Update: [Last Update Date]
+ *
+ *   Technologies Used:
+ *   - [Technology 1]
+ *   - [Technology 2]
+ *
+ *   Description: 
+ *   [A brief description of the file's purpose and contents]
  * 
  **************************************************************/
 `
@@ -178,6 +319,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
 
     return templates[templateType || 'standard'];
 }
+
 
 function isBinaryFile(filePath: string): boolean {
     const binaryExtensions = [
