@@ -18,7 +18,7 @@ Requires VSCode version 1.73.0 or greater.
 
 Header Hero provides the following settings to customize the header templates:
 
-<ins>Header Hero: Header Template (headerHero.headerTemplate)</ins>
+<ins>Header Hero: Header Template (headerHero.headerTemplate)</ins><br>
 Select the header template to be added to for your files. You can choose from a
 variety of predefined templates or define your own custom template.
 
@@ -37,7 +37,7 @@ variety of predefined templates or define your own custom template.
 - Custom: Custom header template defined by the user.
 ~~~~
 
-<ins>Header Hero: Custom Template (headerHero.customTemplate)</ins>
+<ins>Header Hero: Custom Template (headerHero.customTemplate)</ins><br>
 Define your custom header template. Use \${fileName} for the file name and \${date} for the current date.
 
 
