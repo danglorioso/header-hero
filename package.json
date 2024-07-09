@@ -20,10 +20,6 @@
             {
                 "command": "headerHero.insertHeader",
                 "title": "Insert Header Template into File or Directory"
-            },
-            {
-                "command": "headerHero.insertFunctionContract",
-                "title": "Insert Function Contract Template"
             }
         ],
         "configuration": {
