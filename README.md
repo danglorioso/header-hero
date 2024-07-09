@@ -40,7 +40,6 @@ variety of predefined templates or define your own custom template.
 <ins>Header Hero: Custom Template (headerHero.customTemplate)</ins><br>
 Define your custom header template. Use \${fileName} for the file name and \${date} for the current date.
 
-
 With these settings, you can easily select or create the header template that best fits your needs.
 
 ## Known Issues

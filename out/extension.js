@@ -155,18 +155,18 @@ function getHeaderTemplate(filePath, templateType) {
  **************************************************************/
 `,
         personal: `\
-#******************************************************************
-#
-#                        ${path.basename(filePath)}
-#
-#       Project: [Project Name]
-#       Created: ${new Date().toLocaleDateString()}
-#        Author: [Your Name]
-#
-#   Description:
-#   [A brief description of the file's purpose and contents]
-#
-#******************************************************************
+/**************************************************************
+ *
+ *                        ${path.basename(filePath)}
+ *
+ *       Project: [Project Name]
+ *       Created: ${new Date().toLocaleDateString()}
+ *        Author: [Your Name]
+ *
+ *   Description:
+ *   [A brief description of the file's purpose and contents]
+ *
+**************************************************************/
 `,
         pro: `\
 /**************************************************************
@@ -186,19 +186,19 @@ function getHeaderTemplate(filePath, templateType) {
  **************************************************************/
 `,
         openSource: `\
-###############################################################
-#
-#                ${path.basename(filePath)}
-#
-#   Open Source Project: [Project Name]
-#        Repository URL: [Repository URL]
-#           Contributor: [Your Name]
-#                  Date: ${new Date().toLocaleDateString()}
-#
-#   Description: 
-#   [A brief description of the file's purpose and contents]
-#
-###############################################################
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *   Open Source Project: [Project Name]
+ *        Repository URL: [Repository URL]
+ *           Contributor: [Your Name]
+ *                  Date: ${new Date().toLocaleDateString()}
+ *
+ *   Description: 
+ *   [A brief description of the file's purpose and contents]
+ *
+ **************************************************************/
 `,
         minimal: `\
 /**************************************************************
@@ -230,37 +230,37 @@ function getHeaderTemplate(filePath, templateType) {
  **************************************************************/
 `,
         ml: `\
-###############################################################
-#
-#                ${path.basename(filePath)}
-#
-#      ML Project: [Project Name]
-#          Author: [Your Name]
-#            Date: ${new Date().toLocaleDateString()}
-#    Dataset Used: [Dataset Name]
-#       Algorithm: [Algorithm Name]
-#
-#   Description:
-#   [A brief description of the file's purpose and contents]
-#
-###############################################################
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *      ML Project: [Project Name]
+ *          Author: [Your Name]
+ *            Date: ${new Date().toLocaleDateString()}
+ *    Dataset Used: [Dataset Name]
+ *       Algorithm: [Algorithm Name]
+ *
+ *   Description:
+ *   [A brief description of the file's purpose and contents]
+ *
+ **************************************************************/
 `,
         script: `\
-###############################################################
-#
-#                ${path.basename(filePath)}
-#
-#      Script Name: ${path.basename(filePath)}
-#           Author: [Your Name]
-#             Date: ${new Date().toLocaleDateString()}
-
-#    Description: 
-#    [A brief description of what the script does]
-#
-#    Usage: 
-#    [How to run the script]
-#
-###############################################################
+/**************************************************************
+ *
+ *                ${path.basename(filePath)}
+ *
+ *      Script Name: ${path.basename(filePath)}
+ *           Author: [Your Name]
+ *             Date: ${new Date().toLocaleDateString()} 
+ *
+ *    Description: 
+ *    [A brief description of what the script does]
+ *
+ *    Usage: 
+ *    [How to run the script]
+ *
+ **************************************************************/
 `,
         test: `\
 /**************************************************************
