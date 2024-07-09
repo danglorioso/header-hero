@@ -150,7 +150,7 @@ function getHeaderTemplate(filePath, templateType) {
  *     Project: [Project Title]
  *    Filename: ${path.basename(filePath)}
  * Description: 
- *    [A brief description of the file's purpose and contents]
+ *    [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -164,7 +164,7 @@ function getHeaderTemplate(filePath, templateType) {
  *        Author: [Your Name]
  *
  *   Description:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
 **************************************************************/
 `,
@@ -181,7 +181,7 @@ function getHeaderTemplate(filePath, templateType) {
  *        Version: 1.0.0
  *
  *   Summary:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  **************************************************************/
 `,
@@ -196,7 +196,7 @@ function getHeaderTemplate(filePath, templateType) {
  *                  Date: ${new Date().toLocaleDateString()}
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -221,7 +221,7 @@ function getHeaderTemplate(filePath, templateType) {
  *        Version: 1.0.0
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  *   Change Log:
  *   - [Date]: [Description of changes]
@@ -241,7 +241,7 @@ function getHeaderTemplate(filePath, templateType) {
  *       Algorithm: [Algorithm Name]
  *
  *   Description:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -297,7 +297,7 @@ function getHeaderTemplate(filePath, templateType) {
  *   - [Technology 2]
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  **************************************************************/
 `

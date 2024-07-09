@@ -164,7 +164,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *     Project: [Project Title]
  *    Filename: ${path.basename(filePath)}
  * Description: 
- *    [A brief description of the file's purpose and contents]
+ *    [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -178,7 +178,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *        Author: [Your Name]
  *
  *   Description:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
 **************************************************************/
 `,
@@ -195,7 +195,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *        Version: 1.0.0
  *
  *   Summary:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  **************************************************************/
 `,
@@ -210,7 +210,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *                  Date: ${new Date().toLocaleDateString()}
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -235,7 +235,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *        Version: 1.0.0
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  *   Change Log:
  *   - [Date]: [Description of changes]
@@ -255,7 +255,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *       Algorithm: [Algorithm Name]
  *
  *   Description:
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  *
  **************************************************************/
 `,
@@ -311,7 +311,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
  *   - [Technology 2]
  *
  *   Description: 
- *   [A brief description of the file's purpose and contents]
+ *   [A brief description of the file purpose and contents]
  * 
  **************************************************************/
 `
