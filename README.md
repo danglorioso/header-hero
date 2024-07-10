@@ -31,6 +31,42 @@ Editing the Template Selected in Settings
 ## Header Templates
 Here are examples of each header template available:
 
+Standard Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/standard.png)
+
+Assignment Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/assignment.png)
+
+Academic Project Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/academic.png)
+
+Personal Project Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/personal.png)
+
+Professional Code Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/pro.png)
+
+Open Source Contribution Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/openSource.png)
+
+Minimal Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/minimal.png)
+
+Detailed Change Log Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/detailed.png)
+
+Machine Learning Project Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/ml.png)
+
+Script File Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/script.png)
+
+Test File Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/test.png)
+
+Web Development Project Header Template
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/webDev.png)
+
 ## Requirements
 
 Requires VSCode version 1.73.0 or greater.
