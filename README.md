@@ -8,6 +8,10 @@
 The **header-hero** extension provides a number of different features to improve 
 your code's readability and maintainability with just a click.
 
+- Insert header into single file in active edtior or every file in open directory
+- Auto-populated date and filename information in header blocks
+- Select header template from a variety of predefined templates or define your own custom template (see Extension Settings).
+- Automatically skips files that already have a header block at top
 - Will not add header templates to system files (like .DS_Store or .gitattributes)
 
 ## Requirements
