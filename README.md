@@ -1,35 +1,47 @@
 # header-hero README
 
-**Header Hero** is a Microsoft Visual Studio Code extension designed to streamline and enhance your coding workflow by automatically inserting customizable header templates into your files. This extension helps improve the readability and maintainability of your code by adding consistent documentation headers with just a click. Whether you are working on academic projects, professional code, open source contributions, or personal projects, Header Hero ensures that your files are well-documented and easy to navigate.
+**Header Hero** is a Microsoft Visual Studio Code extension designed to 
+streamline and enhance your coding workflow by automatically inserting 
+customizable header templates into your files. This extension helps improve 
+the readability and maintainability of your code by adding consistent 
+documentation headers with just a click. Whether you are working on academic 
+projects, professional code, open source contributions, or personal projects, 
+Header Hero ensures that your files are well-documented and easy to navigate.
 
-This extension was developed to provide a simple yet powerful way to maintain consistent documentation across various types of projects and coding standards.
+This extension was developed to provide a simple yet powerful way to maintain 
+consistent documentation across various types of projects and coding standards.
 
 ## Features
 
 The **header-hero** extension provides a number of different features to improve 
 your code's readability and maintainability with just a click.
 
-- Insert Header: Add a header template to the current file in the active editor or to every file in an open directory.
-- Auto-Populated Information: Automatically fills in date and filename information in header blocks.
-- Template Selection: Choose from a variety of predefined header templates or define your own custom template (see Extension Settings).
-- Header Detection: Automatically skips files that already have a header block at the top.
-- File Exclusion: Will not add header templates to system files (e.g., .DS_Store, .gitattributes).
+- **Insert Header**: Add a header template to the current file in the active 
+editor or to every file in an open directory.
+- **Auto-Populated Information**: Automatically fills in date and filename 
+information in header blocks.
+- **Template Selection**: Choose from a variety of predefined header templates
+or define your own custom template (see Extension Settings).
+- **Existing Header Detection**: Automatically skips files that already have a
+header block at the top.
+- **File Exclusion**: Will not add header templates to system files (e.g., 
+.DS_Store, .gitattributes).
 
 ## Usage
 Inserting Header into a Single File
 - Use the command headerHero.insertHeader to insert a header template into a single file.
-  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_singleFile.gif)
+  ![Use the command headerHero.insertHeader to insert a header template into a single file.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_singleFile.gif)
 
 Inserting Header into a Directory
 - Use the command headerHero.insertHeader to insert a header template into all files within a directory.
-  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_directory.gif)
+  ![Use the command headerHero.insertHeader to insert a header template into all files within a directory.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_directory.gif)
 
 Editing the Template Selected in Settings
 - Modify the selected header template in the settings to fit your specific needs.
-  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/HeaderTemplate_setting.gif)
+  ![Modify the selected header template in the settings to fit your specific needs.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/HeaderTemplate_setting.gif)
 
 ## Header Templates
-Here are examples of each header template available:
+Here are examples of each predefined header template available:
 
 Standard Header Template
   ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/standard.png)
