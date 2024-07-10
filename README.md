@@ -18,15 +18,15 @@ your code's readability and maintainability with just a click.
 ## Usage
 Inserting Header into a Single File
 - Use the command headerHero.insertHeader to insert a header template into a single file.
-
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_singleFile.gif)
 
 Inserting Header into a Directory
 - Use the command headerHero.insertHeader to insert a header template into all files within a directory.
-
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_directory.gif)
 
 Editing the Template Selected in Settings
 - Modify the selected header template in the settings to fit your specific needs.
-
+  ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/HeaderTemplate_setting.gif)
 
 ## Header Templates
 Here are examples of each header template available:
