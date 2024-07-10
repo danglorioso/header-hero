@@ -28,13 +28,11 @@ const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
 function activate({ subscriptions }) {
-    console.log('Header Hero extension is now active!');
     // Register a command that inserts a header
     const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
-        console.log('Insert header command called.');
         await insertHeaderTemplate();
     });
-    // Add to a list of disposables which are disposed when this extension is deactivated
+    // Add to a list of disposables which are disposed when extension deactivated
     subscriptions.push(insertHeader);
 }
 exports.activate = activate;
@@ -92,12 +90,14 @@ async function insertHeaderIntoDirectory(directoryPath) {
             continue; // Skip files that begin with a dot
         }
         const fullPath = path.join(directoryPath, file);
+        // Skip directories and binary files
         if (fs.lstatSync(fullPath).isFile() && !isBinaryFile(fullPath)) {
+            // Open the file in the editor
             const document = await vscode.workspace.openTextDocument(fullPath);
+            // Fetch the first line of the file
             const firstLine = document.lineAt(0).text;
-            // Skip files that already have a header starting with /*
+            // Skip files that already have a header starting with "/*"
             if (/^\/\*{2,}/.test(firstLine.trim())) {
-                console.log(`Skipping file with existing header: ${fullPath}`);
                 continue;
             }
             await insertHeaderIntoFile(fullPath); // Apply header to each file
@@ -109,12 +109,15 @@ async function insertHeaderIntoFile(filePath) {
     const config = vscode.workspace.getConfiguration('headerHero');
     const headerTemplateType = config.get('headerTemplate');
     let headerTemplate = '';
+    // If the user has selected a custom template, use that
     if (headerTemplateType === 'custom') {
         headerTemplate = config.get('customTemplate', '');
     }
     else {
+        // Otherwise, fetch the template type selected and use
         headerTemplate = getHeaderTemplate(filePath, headerTemplateType);
     }
+    // Open the file in the editor and insert the header at top
     const document = await vscode.workspace.openTextDocument(filePath);
     const editor = await vscode.window.showTextDocument(document);
     const position = new vscode.Position(0, 0);
@@ -122,6 +125,7 @@ async function insertHeaderIntoFile(filePath) {
         editBuilder.insert(position, headerTemplate);
     });
 }
+// Function to return a header template based on the template type
 function getHeaderTemplate(filePath, templateType) {
     const templates = {
         standard: `\
@@ -316,6 +320,7 @@ function getHeaderTemplate(filePath, templateType) {
     };
     return templates[templateType || 'standard'];
 }
+// Function to check if a file is binary based on its extension
 function isBinaryFile(filePath) {
     const binaryExtensions = [
         '.DS_Store', '.exe', '.bin', '.dll', '.so', '.dylib', '.pdf',

@@ -34,7 +34,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
         await insertHeaderTemplate();
     });
 
-    // Add to a list of disposables which are disposed when this extension is deactivated
+    // Add to a list of disposables which are disposed when extension deactivated
     subscriptions.push(insertHeader);
 }
 
@@ -98,11 +98,15 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
             continue; // Skip files that begin with a dot
         }
         const fullPath = path.join(directoryPath, file);
+
+        // Skip directories and binary files
         if (fs.lstatSync(fullPath).isFile() && !isBinaryFile(fullPath)) {
+            // Open the file in the editor
             const document = await vscode.workspace.openTextDocument(fullPath);
+            // Fetch the first line of the file
             const firstLine = document.lineAt(0).text;
 
-            // Skip files that already have a header starting with /*
+            // Skip files that already have a header starting with "/*"
             if (/^\/\*{2,}/.test(firstLine.trim())) {
                 continue;
             }
@@ -118,12 +122,15 @@ async function insertHeaderIntoFile(filePath: string) {
     const headerTemplateType = config.get<string>('headerTemplate');
     let headerTemplate = '';
 
+    // If the user has selected a custom template, use that
     if (headerTemplateType === 'custom') {
         headerTemplate = config.get<string>('customTemplate', '');
     } else {
+        // Otherwise, fetch the template type selected and use
         headerTemplate = getHeaderTemplate(filePath, headerTemplateType);
     }
 
+    // Open the file in the editor and insert the header at top
     const document = await vscode.workspace.openTextDocument(filePath);
     const editor = await vscode.window.showTextDocument(document);
     const position = new vscode.Position(0, 0);
@@ -132,6 +139,7 @@ async function insertHeaderIntoFile(filePath: string) {
     });
 }
 
+// Function to return a header template based on the template type
 function getHeaderTemplate(filePath: string, templateType: string | undefined): string {
     const templates: { [key: string]: string } = {
         standard: `\
@@ -328,7 +336,7 @@ function getHeaderTemplate(filePath: string, templateType: string | undefined): 
     return templates[templateType || 'standard'];
 }
 
-
+// Function to check if a file is binary based on its extension
 function isBinaryFile(filePath: string): boolean {
     const binaryExtensions = [
         '.DS_Store', '.exe', '.bin', '.dll', '.so', '.dylib', '.pdf',
