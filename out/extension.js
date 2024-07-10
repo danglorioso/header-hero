@@ -132,7 +132,7 @@ function getHeaderTemplate(filePath, templateType) {
  *         Author: 
  *           Date: ${new Date().toLocaleDateString()}
  *
- *     Summary: 
+ *        Summary: 
  * 
  **************************************************************/
 `,
@@ -145,7 +145,7 @@ function getHeaderTemplate(filePath, templateType) {
  *         Author: 
  *           Date: ${new Date().toLocaleDateString()}
  *
- *     Summary: 
+ *        Summary: 
  * 
  **************************************************************/
 `,
@@ -159,9 +159,9 @@ function getHeaderTemplate(filePath, templateType) {
  *         Date: ${new Date().toLocaleDateString()}
  *       Author: [Your Name]
  *
- *     Project: [Project Title]
- *    Filename: ${path.basename(filePath)}
- * Description: 
+ *      Project: [Project Title]
+ *     Filename: ${path.basename(filePath)}
+ *  Description: 
  *    [A brief description of the file purpose and contents]
  *
  **************************************************************/
