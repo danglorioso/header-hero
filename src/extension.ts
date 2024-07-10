@@ -5,7 +5,7 @@
  *            Project: Header Hero VSCode Extension
  *             Author: Dan Glorioso
  *            Created: 06/15/2024
- *           Modified: 06/25/2024
+ *           Modified: 07/10/2024
  *            Version: 1.0.0
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides commands
@@ -29,11 +29,8 @@ import * as path from 'path';
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 
-    console.log('Header Hero extension is now active!');
-
     // Register a command that inserts a header
     const insertHeader = vscode.commands.registerCommand('headerHero.insertHeader', async () => {
-        console.log('Insert header command called.');
         await insertHeaderTemplate();
     });
 
@@ -41,7 +38,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
     subscriptions.push(insertHeader);
 }
 
-// Command to for handling the queries for inserting a header
+// Command for handling the queries for inserting a header
 async function insertHeaderTemplate() {
     // Initalize the active text editor
     const editor = vscode.window.activeTextEditor;
@@ -64,17 +61,17 @@ async function insertHeaderTemplate() {
 
     // Execute the choice from quick pick
     if (choice === 'Just this file') {
-        console.log('Inserting header into single file.');
         insertHeaderIntoFile(editor.document.uri.fsPath);
     } else if (choice === 'All files in directory') {
-        console.log('Inserting header into all files in directory.');
+        // Get the directory path of the active file
         const directoryPath = path.dirname(editor.document.uri.fsPath);
+        // Call appropriate function passing directory path
         insertHeaderIntoDirectory(directoryPath);
     }
 }
 
+// Edge case: No active editor is open when command is executed
 async function handleNoActiveEditor() {
-    console.log('No active editor found.');
     const choice = await vscode.window.showQuickPick(['Yes', 'No'], {
         placeHolder: 'No active editor found. Do you want to insert headers into all files in the directory?'
     });
@@ -107,7 +104,6 @@ async function insertHeaderIntoDirectory(directoryPath: string) {
 
             // Skip files that already have a header starting with /*
             if (/^\/\*{2,}/.test(firstLine.trim())) {
-                console.log(`Skipping file with existing header: ${fullPath}`);
                 continue;
             }
             
