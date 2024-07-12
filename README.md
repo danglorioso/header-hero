@@ -121,6 +121,10 @@ No known issues at this time.
 
 ## Release Notes
 
+### 1.0.1
+
+Improved documentation.
+
 ### 1.0.0
 
 Initial release of **Header Hero** VSCode Extension.
