@@ -1,27 +1,28 @@
-# header-hero README
+# Header Hero README
 
 **Header Hero** is a Microsoft Visual Studio Code extension designed to 
 streamline and enhance your coding workflow by automatically inserting 
-customizable header templates into your files. This extension helps improve 
-the readability and maintainability of your code by adding consistent 
-documentation headers with just a click. Whether you are working on academic 
-projects, professional code, open source contributions, or personal projects, 
-Header Hero ensures that your files are well-documented and easy to navigate.
+smart and customizable header blocks into your files. This extension helps 
+improve the readability and maintainability of your code by adding consistent 
+documentation headers to a file or a directory with just one command. Whether 
+you are working on academic projects, professional code, open source 
+contributions, or personal projects, **Header Hero** ensures that your files are 
+well-documented and easy to navigate.
 
 This extension was developed to provide a simple yet powerful way to maintain 
 consistent documentation across various types of projects and coding standards.
 
 ## Features
 
-The **header-hero** extension provides a number of different features to improve 
+**Header Hero** provides a number of different features to improve 
 your code's readability and maintainability with just a click.
 
 - **Insert Header**: Add a header template to the current file in the active 
-editor or to every file in an open directory.
+editor or to every file in an open directory, with smart exceptions.
 - **Auto-Populated Information**: Automatically fills in date and filename 
 information in header blocks.
-- **Template Selection**: Choose from a variety of predefined header templates
-or define your own custom template (see Extension Settings).
+- **Template Selection**: Choose from a variety of predefined header templates designed for various purposes.
+- **Customizable**: Define your own custom header template, complete with auto-populated fields (see Extension Settings).
 - **Existing Header Detection**: Automatically skips files that already have a
 header block at the top.
 - **File Exclusion**: Will not add header templates to system files (e.g., 
@@ -29,11 +30,11 @@ header block at the top.
 
 ## Usage
 Inserting Header into a Single File
-- Use the command headerHero.insertHeader to insert a header template into a single file.
+- Use the command headerHero.insertHeader with a file open in the active editor to insert a header template into a single file.
   ![Use the command headerHero.insertHeader to insert a header template into a single file.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_singleFile.gif)
 
 Inserting Header into a Directory
-- Use the command headerHero.insertHeader to insert a header template into all files within a directory.
+- Use the command headerHero.insertHeader and follow the prompts to insert a header template into all files within a directory.
   ![Use the command headerHero.insertHeader to insert a header template into all files within a directory.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/insertHeader_directory.gif)
 
 Editing the Template Selected in Settings
@@ -42,6 +43,8 @@ Editing the Template Selected in Settings
 
 ## Header Templates
 Here are examples of each predefined header template available:
+
+Note: the "\${date}" and "\${filename}" fields are automatically populated upon usage.
 
 Standard Header Template
   ![.](https://raw.githubusercontent.com/danglorioso/header-hero/main/images/standard.png)
@@ -85,11 +88,11 @@ Requires VSCode version 1.73.0 or greater.
 
 ## Extension Settings
 
-Header Hero provides the following settings to customize the header templates:
+**Header Hero** provides the following settings to customize the header templates:
 
 <ins>Header Hero: Header Template (headerHero.headerTemplate)</ins><br>
 Select the header template to be added to for your files. You can choose from a
-variety of predefined templates or define your own custom template.
+variety of predefined templates or choose your own custom template.
 
 ~~~~
 - Standard: Standard header template with basic details including file name, author, date, and summary.
@@ -120,7 +123,7 @@ No known issues at this time.
 
 ### 1.0.0
 
-Initial release of Header Hero VSCode Extension.
+Initial release of **Header Hero** VSCode Extension.
 
 ---
 
