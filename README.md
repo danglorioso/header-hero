@@ -84,7 +84,7 @@ Web Development Project Header Template
 
 ## Requirements
 
-Requires VSCode version 1.73.0 or greater.
+Requires VS Code version 1.73.0 or greater.
 
 ## Extension Settings
 
@@ -121,13 +121,17 @@ No known issues at this time.
 
 ## Release Notes
 
+### 1.0.2
+
+Improved documentation.
+
 ### 1.0.1
 
 Improved documentation.
 
 ### 1.0.0
 
-Initial release of **Header Hero** VSCode Extension.
+Initial release of **Header Hero** VS Code Extension.
 
 ---
 
