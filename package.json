@@ -2,7 +2,7 @@
     "name": "header-hero",
     "displayName": "Header Hero - Quick & Easy File Documentation",
     "description": "Automatically insert customizable headers into your code, making documentation quick and effortless.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "DanGlorioso",
     "icon": "icon.png",
     "repository": {
