@@ -15,6 +15,20 @@
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "header-documentation",
+        "code-documentation",
+        "header-template",
+        "header-comment",
+        "auto-documentation",
+        "auto-header",
+        "header-insertion",
+        "header-generator",
+        "auto-populated-header",
+        "smart-header",
+        "quick-header",
+        "quick-documentation"
+    ],
     "contributes": {
         "commands": [
             {
